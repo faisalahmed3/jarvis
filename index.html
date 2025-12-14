@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veritas Intel — News Verification Desk</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="dark">
+  <header class="top-bar">
+    <div class="brand">
+      <span class="logo">◼</span>
+      <div>
+        <div class="name">VERITAS INTEL</div>
+        <div class="tagline">Independent News Verification Desk</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <span class="badge classified">CLASSIFIED</span>
+      <button class="toggle" onclick="toggleTheme()">☾ / ☀</button>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="panel">
+      <h1>Fake News Verification</h1>
+      <p class="subtitle">
+        Cross-checking intercepted information using AI-assisted intelligence analysis.
+      </p>
+
+      <div class="meta">
+        <span>SESSION ID: VN-2471</span>
+        <span id="time"></span>
+      </div>
+
+      <label class="feed-label">INCOMING REPORT</label>
+
+      <textarea
+        id="newsText"
+        placeholder="Paste intercepted headline or article text here…"></textarea>
+
+      <button class="scan-btn" onclick="checkNews()">
+        RUN INTELLIGENCE SCAN
+      </button>
+
+      <div id="result" class="result-panel"></div>
+
+      <footer class="footer">
+        Secure Channel • FastAPI • Transformer Models • No Data Stored
+      </footer>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
