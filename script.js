@@ -7,7 +7,17 @@ setInterval(() => {
 // ===== THEME TOGGLE =====
 function toggleTheme() {
   document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
 }
+
+// Persist theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
 
 // ===== API CALL =====
 async function checkNews() {
@@ -15,11 +25,11 @@ async function checkNews() {
   const result = document.getElementById("result");
 
   if (!text) {
-    result.innerHTML = "No report received.";
+    result.innerHTML = "⚠ No signal detected.";
     return;
   }
 
-  result.innerHTML = "Analyzing credibility…";
+  result.innerHTML = "🔍 Scanning neural patterns…";
 
   try {
     const res = await fetch(
@@ -32,22 +42,17 @@ async function checkNews() {
     );
 
     const data = await res.json();
-
-    // === FIX STARTS HERE ===
-    const verdict = data.verdict; // REAL | FAKE | UNCERTAIN
+    const verdict = data.verdict;
 
     const cls =
-      verdict === "FAKE"
-        ? "fake"
-        : verdict === "REAL"
-        ? "real"
-        : "uncertain";
+      verdict === "FAKE" ? "fake" :
+      verdict === "REAL" ? "real" : "uncertain";
 
     const confidence =
       verdict === "FAKE"
-        ? data.prob_fake
+        ? data.prob_fake ?? data.confidence / 100
         : verdict === "REAL"
-        ? data.prob_real
+        ? data.prob_real ?? data.confidence / 100
         : data.confidence / 100;
 
     result.innerHTML = `
@@ -55,16 +60,14 @@ async function checkNews() {
         VERDICT: ${verdict}
       </div>
       <div class="confidence">
-        Confidence level: ${(confidence * 100).toFixed(2)}%
+        Confidence Level: ${(confidence * 100).toFixed(2)}%
       </div>
       <div class="confidence">
-        Editorial note: ${data.note}
+        ${data.note}
       </div>
     `;
-    // === FIX ENDS HERE ===
-
-  } catch (err) {
-    result.innerHTML = "Secure channel failure. Scan aborted.";
-    console.error(err);
+  } catch (e) {
+    result.innerHTML = "❌ Neural link disrupted.";
+    console.error(e);
   }
 }

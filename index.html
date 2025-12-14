@@ -2,52 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Veritas Intel — News Verification Desk</title>
+  <title>VERITAS INTEL • JARVIS</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="dark">
+<body>
+  <!-- Animated HUD layers -->
+  <div class="hud-grid"></div>
+  <div class="hud-glow"></div>
+
   <header class="top-bar">
     <div class="brand">
-      <span class="logo">◼</span>
+      <div class="arc-core"></div>
       <div>
         <div class="name">VERITAS INTEL</div>
-        <div class="tagline">Independent News Verification Desk</div>
+        <div class="tagline">J.A.R.V.I.S Credibility Engine</div>
       </div>
     </div>
 
     <div class="controls">
-      <span class="badge classified">CLASSIFIED</span>
-      <button class="toggle" onclick="toggleTheme()">☾ / ☀</button>
+      <span class="status online">ONLINE</span>
+      <button class="toggle" onclick="toggleTheme()">☀ / ☾</button>
     </div>
   </header>
 
   <main class="wrapper">
-    <section class="panel">
-      <h1>Fake News Verification</h1>
+    <section class="hud-panel">
+      <h1>NEWS CREDIBILITY SCAN</h1>
       <p class="subtitle">
-        Cross-checking intercepted information using AI-assisted intelligence analysis.
+        AI-assisted verification using transformer intelligence
       </p>
 
       <div class="meta">
-        <span>SESSION ID: VN-2471</span>
+        <span>SESSION: VN-2471</span>
         <span id="time"></span>
       </div>
 
-      <label class="feed-label">INCOMING REPORT</label>
+      <label class="feed-label">INCOMING SIGNAL</label>
 
       <textarea
         id="newsText"
-        placeholder="Paste intercepted headline or article text here…"></textarea>
+        placeholder="Inject intercepted information stream…"></textarea>
 
       <button class="scan-btn" onclick="checkNews()">
-        RUN INTELLIGENCE SCAN
+        ▶ EXECUTE SCAN
       </button>
 
       <div id="result" class="result-panel"></div>
 
       <footer class="footer">
-        Secure Channel • FastAPI • Transformer Models • No Data Stored
+        Neural Core Active • Secure Channel • No Data Stored
       </footer>
     </section>
   </main>
